@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dirección Financiera — Exportadora de Café Las Verapaces, S.A.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --verde-950:#0F2418;
+  --verde-900:#153524;
+  --verde-800:#1B3A2B;
+  --verde-700:#25523B;
+  --verde-600:#3D6B4F;
+  --verde-500:#548768;
+  --verde-400:#7FA789;
+  --verde-300:#AEC9AF;
+  --verde-200:#D3E2D0;
+  --verde-100:#E9F1E5;
+  --crema:#F6F3EA;
+  --crema-2:#FBFAF5;
+  --dorado:#AD8A4D;
+  --dorado-deep:#8C6A32;
+  --terracota:#A23E30;
+  --texto:#182119;
+  --texto-suave:#4B5A4E;
+  --borde:#D7DECB;
+  --sombra: 0 1px 2px rgba(15,36,24,0.06);
+
+  --bg: var(--crema);
+  --panel: var(--crema-2);
+  --panel-2: #ffffff;
+  --text: var(--texto);
+  --text-soft: var(--texto-suave);
+  --border: var(--borde);
+  --input-bg: #ffffff;
+  --computed-bg: var(--verde-100);
+  --computed-text: var(--verde-800);
+  --accent: var(--verde-700);
+  --accent-strong: var(--verde-800);
+  --nav-bg: var(--verde-900);
+  --nav-text: var(--verde-100);
+  --nav-text-dim: var(--verde-300);
+  --nav-active: var(--verde-700);
+  --good: #2E6B45;
+  --bad: var(--terracota);
+}
+
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg: #0C1712;
+    --panel: #10201A;
+    --panel-2: #132419;
+    --text: #E7EEE5;
+    --text-soft: #A9BBAC;
+    --border: #22392C;
+    --input-bg: #0F1D16;
+    --computed-bg: #16311F;
+    --computed-text: #BFE2C4;
+    --accent: #6FA37F;
+    --accent-strong: #8FBF9C;
+    --nav-bg: #0A150F;
+    --nav-text: #DCE8DC;
+    --nav-text-dim: #7E9A82;
+    --nav-active: #1E3A28;
+    --good: #6FBF86;
+    --bad: #E1836F;
+  }
+}
+:root[data-theme="dark"]{
+  --bg: #0C1712;
+  --panel: #10201A;
+  --panel-2: #132419;
+  --text: #E7EEE5;
+  --text-soft: #A9BBAC;
+  --border: #22392C;
+  --input-bg: #0F1D16;
+  --computed-bg: #16311F;
+  --computed-text: #BFE2C4;
+  --accent: #6FA37F;
+  --accent-strong: #8FBF9C;
+  --nav-bg: #0A150F;
+  --nav-text: #DCE8DC;
+  --nav-text-dim: #7E9A82;
+  --nav-active: #1E3A28;
+  --good: #6FBF86;
+  --bad: #E1836F;
+}
+
+*{box-sizing:border-box;}
+html{
+  scroll-padding-top: env(safe-area-inset-top,0px);
+}
+html,body{
+  height:100%;
+}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Inter',system-ui,-apple-system,sans-serif;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,.serif{
+  font-family:'Fraunces',Georgia,'Times New Roman',serif;
+}
+::selection{ background:var(--verde-300); color:var(--verde-950); }
+
+button{ font-family:inherit; }
+
+/* ---------- Layout shell ---------- */
+.app{
+  display:grid;
+  grid-template-columns: 248px 1fr;
+  min-height:100%;
+}
+@media (max-width: 880px){
+  .app{ grid-template-columns: 1fr; }
+}
+
+/* ---------- Sidebar ---------- */
+.sidebar{
+  background:var(--nav-bg);
+  color:var(--nav-text);
+  padding:22px 14px 24px;
+  position:sticky;
+  top:env(safe-area-inset-top,0px);
+  align-self:start;
+  height:100vh;
+  height:100dvh;
+  overflow-y:auto;
+}
+@media (max-width: 880px){
+  .sidebar{ position:static; height:auto; overflow:visible; padding:16px 12px 8px; }
+}
+.brand{
+  padding:6px 10px 18px;
+  border-bottom:1px solid rgba(255,255,255,0.09);
+  margin-bottom:14px;
+}
+.brand .mark{
+  display:flex; align-items:center; gap:10px; margin-bottom:10px;
+}
+.brand .mark svg{ flex:none; }
+.brand .mark span{
+  font-family:'Fraunces',serif; font-weight:600; font-size:15.5px; line-height:1.25;
+  color:var(--nav-text);
+}
+.brand p{
+  margin:0; font-size:12px; line-height:1.5; color:var(--nav-text-dim);
+}
+
+.navlist{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px; }
+@media (max-width: 880px){
+  .navlist{ flex-direction:row; overflow-x:auto; gap:6px; padding-bottom:8px; -webkit-overflow-scrolling:touch; }
+  .navlist::-webkit-scrollbar{ display:none; }
+}
+.navlist button{
+  all:unset;
+  cursor:pointer;
+  display:flex; align-items:baseline; gap:9px;
+  padding:9px 11px;
+  border-radius:8px;
+  font-size:13.5px;
+  color:var(--nav-text-dim);
+  white-space:nowrap;
+  transition:background .15s ease, color .15s ease;
+}
+.navlist button .num{
+  font-variant-numeric:tabular-nums;
+  font-size:11px;
+  opacity:.75;
+  min-width:16px;
+}
+.navlist button:hover{ background:rgba(255,255,255,0.06); color:var(--nav-text); }
+.navlist button.active{ background:var(--nav-active); color:#fff; }
+
+.sidebar-foot{
+  margin-top:18px; padding:12px 10px 4px;
+  border-top:1px solid rgba(255,255,255,0.09);
+  font-size:11.5px; color:var(--nav-text-dim); line-height:1.6;
+}
+.theme-toggle{
+  all:unset; cursor:pointer; display:inline-flex; align-items:center; gap:6px;
+  font-size:12px; color:var(--nav-text-dim); margin-top:8px;
+  padding:6px 8px; border-radius:6px;
+}
+.theme-toggle:hover{ background:rgba(255,255,255,.06); color:var(--nav-text); }
+
+/* ---------- Main ---------- */
+main{ min-width:0; }
+.topbar{
+  padding:28px 32px 18px;
+  border-bottom:1px solid var(--border);
+  background:linear-gradient(180deg, var(--panel-2), var(--panel));
+}
+@media (max-width:640px){ .topbar{ padding:20px 16px 14px; } }
+.topbar h1{
+  margin:0 0 6px; font-size:26px; font-weight:600; color:var(--accent-strong); letter-spacing:-0.01em;
+}
+.topbar .sub{ margin:0; color:var(--text-soft); font-size:14px; max-width:62ch; line-height:1.55; }
+
+.content{ padding:26px 32px 60px; max-width:1180px; }
+@media (max-width:640px){ .content{ padding:18px 16px 48px; } }
+
+.section{ display:none; animation:fadein .25s ease; }
+.section.active{ display:block; }
+@keyframes fadein{ from{opacity:0; transform:translateY(3px);} to{opacity:1; transform:none;} }
+
+.section-head{ margin-bottom:18px; }
+.section-head h2{ margin:0 0 6px; font-size:21px; font-weight:600; color:var(--text); }
+.section-head p{ margin:0; color:var(--text-soft); font-size:13.6px; max-width:70ch; line-height:1.55; }
+
+.card{
+  background:var(--panel-2);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:20px 22px;
+  margin-bottom:18px;
+  box-shadow:var(--sombra);
+  overflow-x:auto;
+}
+.card > table.rows{ min-width:340px; }
+.card h3{
+  margin:0 0 14px; font-size:14px; font-weight:600;
+  color:var(--accent-strong);
+  display:flex; align-items:center; gap:8px;
+}
+.card h3 .tag{
+  font-family:'Inter',sans-serif; font-weight:600; font-size:10.5px;
+  color:var(--dorado-deep); background:rgba(173,138,77,.14);
+  padding:2px 7px; border-radius:20px; letter-spacing:.02em;
+}
+
+/* ---------- Data table / editable rows ---------- */
+.rows{ width:100%; border-collapse:collapse; }
+.rows tr{ border-bottom:1px solid var(--border); }
+.rows tr:last-child{ border-bottom:none; }
+.rows td, .rows th{ padding:8px 6px; vertical-align:middle; }
+.rows th{
+  text-align:right; font-size:11.5px; font-weight:600; color:var(--text-soft);
+  padding-bottom:9px;
+}
+.rows th:first-child, .rows td.label{ text-align:left; }
+.rows td.label{
+  font-size:13.3px; color:var(--text); min-width:180px;
+}
+.rows tr.subtotal td.label{ font-weight:600; }
+.rows tr.total td.label{ font-weight:700; color:var(--accent-strong); }
+.rows tr.total{ border-top:1.5px solid var(--accent); border-bottom:1.5px solid var(--accent); }
+.rows tr.spacer td{ padding:2px 0; border:none; }
+.rows tr.groupline td{
+  padding-top:16px; font-weight:600; font-size:11.5px; letter-spacing:.02em;
+  color:var(--dorado-deep); border:none;
+}
+
+.cell-input{
+  width:100%; min-width:88px; max-width:130px;
+  text-align:right;
+  padding:6px 8px;
+  border:1px solid var(--border);
+  border-radius:6px;
+  background:var(--input-bg);
+  color:var(--text);
+  font-family:'Inter',sans-serif;
+  font-size:13.3px;
+  font-variant-numeric:tabular-nums;
+  transition:border-color .15s ease, box-shadow .15s ease;
+}
+.cell-input:focus{
+  outline:none; border-color:var(--accent);
+  box-shadow:0 0 0 3px rgba(84,135,104,.18);
+}
+.cell-computed{
+  display:inline-block; width:100%; min-width:88px; max-width:140px;
+  text-align:right; padding:6px 8px; border-radius:6px;
+  background:var(--computed-bg); color:var(--computed-text);
+  font-size:13.3px; font-weight:600; font-variant-numeric:tabular-nums;
+}
+td.num{ text-align:right; white-space:nowrap; }
+.formula-note{ font-size:11.2px; color:var(--text-soft); font-style:italic; }
+
+.check-ok{ color:var(--good); font-weight:600; }
+.check-bad{ color:var(--bad); font-weight:600; }
+
+/* two column grid of cards */
+.grid2{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+@media (max-width:760px){ .grid2{ grid-template-columns:1fr; } }
+.grid3{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+@media (max-width:760px){ .grid3{ grid-template-columns:1fr 1fr; } }
+@media (max-width:520px){ .grid3{ grid-template-columns:1fr; } }
+
+.kpi{
+  background:var(--panel-2); border:1px solid var(--border); border-radius:10px;
+  padding:16px 16px; box-shadow:var(--sombra);
+}
+.kpi .lbl{ font-size:11.5px; color:var(--text-soft); margin-bottom:6px; }
+.kpi .val{ font-family:'Fraunces',serif; font-size:24px; font-weight:600; color:var(--accent-strong); }
+.kpi .sub{ font-size:11.5px; color:var(--text-soft); margin-top:4px; }
+.kpi.warn .val{ color:var(--bad); }
+
+/* buttons */
+.btn{
+  all:unset; cursor:pointer; display:inline-flex; align-items:center; gap:6px;
+  padding:9px 16px; border-radius:8px; font-size:13px; font-weight:600;
+  background:var(--accent); color:#fff; transition:background .15s ease, transform .1s ease;
+}
+.btn:hover{ background:var(--accent-strong); }
+.btn:active{ transform:translateY(1px); }
+.btn.secondary{
+  background:transparent; color:var(--accent-strong); border:1px solid var(--border);
+}
+.btn.secondary:hover{ background:var(--computed-bg); }
+.btn.small{ padding:6px 11px; font-size:12px; }
+
+.toolbar{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom:18px; }
+
+/* diagnostic alt cards */
+.alt-card{
+  background:var(--panel-2); border:1px solid var(--border); border-radius:10px;
+  padding:18px 20px; margin-bottom:14px; box-shadow:var(--sombra);
+}
+.alt-card h4{ margin:0 0 6px; font-size:15px; color:var(--accent-strong); font-family:'Fraunces',serif; font-weight:600;}
+.alt-card p{ margin:0 0 12px; font-size:13.4px; color:var(--text-soft); line-height:1.6; }
+.alt-card .pill{
+  display:inline-block; font-size:10.5px; font-weight:600; color:var(--dorado-deep);
+  background:rgba(173,138,77,.14); padding:2px 8px; border-radius:20px; margin-bottom:10px;
+}
+
+.diagnostico-box{
+  background:var(--panel-2); border:1px solid var(--border); border-radius:10px; padding:20px 22px; margin-bottom:18px;
+  box-shadow:var(--sombra);
+}
+.diagnostico-box p{ font-size:13.8px; line-height:1.7; color:var(--text); margin:0 0 12px;}
+.diagnostico-box p:last-child{ margin-bottom:0; }
+.diagnostico-box b{ color:var(--accent-strong); }
+
+/* simulation bars */
+.barchart{
+  display:flex; align-items:flex-end; gap:6px; height:170px; padding:10px 4px 0;
+  border-bottom:1px solid var(--border);
+  overflow-x:auto;
+}
+.barchart .bar-wrap{
+  display:flex; flex-direction:column; align-items:center; gap:6px; min-width:38px; flex:1;
+}
+.barchart .bar{
+  width:100%; max-width:34px; border-radius:5px 5px 0 0;
+  background:var(--accent);
+  transition:height .3s ease;
+}
+.barchart .bar.negative{ background:var(--bad); }
+.barchart .bar-label{ font-size:10px; color:var(--text-soft); }
+
+.decision-banner{
+  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px;
+  padding:18px 22px; border-radius:10px; margin-bottom:18px;
+  border:1px solid var(--border);
+}
+.decision-banner.accept{ background:rgba(46,107,69,.12); border-color:rgba(46,107,69,.35); }
+.decision-banner.reject{ background:rgba(162,62,48,.10); border-color:rgba(162,62,48,.35); }
+.decision-banner .dtext{ font-family:'Fraunces',serif; font-size:20px; font-weight:600; }
+.decision-banner.accept .dtext{ color:var(--good); }
+.decision-banner.reject .dtext{ color:var(--bad); }
+.decision-banner .dsub{ font-size:12.5px; color:var(--text-soft); margin-top:3px; }
+.decision-banner .metrics{ display:flex; gap:26px; }
+.decision-banner .metrics .m{ text-align:right; }
+.decision-banner .metrics .m .v{ font-family:'Fraunces',serif; font-size:19px; font-weight:600; }
+.decision-banner .metrics .m .l{ font-size:10.5px; color:var(--text-soft); }
+
+textarea.cell-input{ max-width:none; min-height:64px; text-align:left; resize:vertical; font-family:'Inter',sans-serif; }
+
+.hint{ font-size:12px; color:var(--text-soft); margin-top:8px; line-height:1.55; }
+.divider{ height:1px; background:var(--border); margin:22px 0; }
+
+.footer-note{
+  margin-top:8px; padding:18px 0 4px; color:var(--text-soft); font-size:11.6px; line-height:1.6;
+  border-top:1px solid var(--border);
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:0.001ms !important; transition-duration:0.001ms !important; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <nav class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="mark">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="13" cy="13" r="12" stroke="#AEC9AF" stroke-width="1.4"/>
+          <path d="M13 4.5C9 8 9 18 13 21.5" stroke="#AEC9AF" stroke-width="1.4" fill="none"/>
+          <path d="M13 4.5C17 8 17 18 13 21.5" stroke="#AEC9AF" stroke-width="1.4" fill="none"/>
+          <path d="M13 13H23" stroke="#AEC9AF" stroke-width="1.4"/>
+        </svg>
+        <span>Las Verapaces, S.A.</span>
+      </div>
+      <p>Dirección financiera — panel interactivo</p>
+    </div>
+    <ul class="navlist" id="navlist"></ul>
+    <div class="sidebar-foot">
+      Cifras en miles de GTQ salvo que se indique lo contrario. Todos los valores editables recalculan la aplicación al instante.
+      <button class="theme-toggle" id="themeToggle" type="button">
+        <span id="themeIcon">🌓</span><span id="themeLabel">Tema del sistema</span>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+    <div class="topbar">
+      <h1 id="pageTitle">Estados financieros</h1>
+      <p class="sub" id="pageSub">Balance general y estado de resultados — edite cualquier celda para actualizar toda la aplicación.</p>
+    </div>
+    <div class="content" id="content"><!-- sections injected by JS --></div>
+  </main>
+
+</div>
+
+<script>
+/* =========================================================================
+   Dirección Financiera — Exportadora de Café Las Verapaces, S.A.
+   Aplicación interactiva: estados financieros, razones, DuPont, KPIs,
+   costos y punto de equilibrio, flujo de caja, costo de capital,
+   diagnóstico y simulación de proyecto (VPN / TIR).
+   ========================================================================= */
+
+/* ---------------------------- Formato ---------------------------------- */
+const nfQ = new Intl.NumberFormat('es-GT', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+const nfInt = new Intl.NumberFormat('es-GT', { maximumFractionDigits: 0 });
+function fmtQ(n){ if(!isFinite(n)) return '—'; const s = nfQ.format(Math.abs(n)); return (n<0? '-Q ': 'Q ') + s; }
+function fmtPct(n, d){ if(!isFinite(n)) return '—'; return (n*100).toFixed(d==null?2:d) + '%'; }
+function fmtX(n){ if(!isFinite(n)) return '—'; return n.toFixed(2) + '×'; }
+function fmtDays(n){ if(!isFinite(n)) return '—'; return n.toFixed(1) + ' días'; }
+function fmtNum(n){ if(!isFinite(n)) return '—'; return nfInt.format(n); }
+
+function $(id){ return document.getElementById(id); }
+function num(id){ const el = $(id); if(!el) return 0; const v = parseFloat(el.value); return isFinite(v)? v : 0; }
+function setText(id, text){ const el = $(id); if(el) el.textContent = text; }
+function setClass(id, cls){ const el = $(id); if(el) el.className = cls; }
+
+/* ---------------------------- IRR (TIR) --------------------------------- */
+function npvAt(cashflows, r){
+  let s = 0;
+  for(let t=0;t<cashflows.length;t++) s += cashflows[t] / Math.pow(1+r, t);
+  return s;
+}
+function irr(cashflows, guess){
+  guess = guess==null ? 0.12 : guess;
+  let rate = guess;
+  for(let i=0;i<200;i++){
+    let f = npvAt(cashflows, rate);
+    let df = 0;
+    for(let t=1;t<cashflows.length;t++) df += -t * cashflows[t] / Math.pow(1+rate, t+1);
+    if(Math.abs(f) < 1e-7) return rate;
+    if(df === 0) break;
+    const next = rate - f/df;
+    if(!isFinite(next) || next <= -0.999){ break; }
+    rate = next;
+  }
+  // Bisección de respaldo
+  let lo = -0.9, hi = 10;
+  let flo = npvAt(cashflows, lo), fhi = npvAt(cashflows, hi);
+  if(!isFinite(flo) || !isFinite(fhi) || flo*fhi > 0) return NaN;
+  for(let i=0;i<300;i++){
+    const mid = (lo+hi)/2;
+    const fm = npvAt(cashflows, mid);
+    if(Math.abs(fm) < 1e-7) return mid;
+    if((flo<0 && fm<0) || (flo>0 && fm>0)){ lo = mid; flo = fm; } else { hi = mid; }
+  }
+  return (lo+hi)/2;
+}
+
+/* ---------------------------- Navegación -------------------------------- */
+const SECTIONS = [
+  { id:'estados',      label:'Estados financieros',        title:'Estados financieros', sub:'Balance general y estado de resultados 2024–2025. Edite cualquier celda blanca; las celdas verdes se calculan solas.' },
+  { id:'razones',       label:'Razones financieras',         title:'Razones financieras', sub:'Liquidez, endeudamiento, márgenes y rentabilidad, calculadas directamente del balance y el estado de resultados.' },
+  { id:'dupont',        label:'Modelo DuPont',               title:'Modelo DuPont', sub:'Descomposición del ROE en sus factores clásico (3) y extendido (5).' },
+  { id:'kpis',          label:'KPIs logístico-financieros',  title:'KPIs logístico-financieros 2025', sub:'Ciclo de conversión de efectivo y nivel de servicio al cliente. Los datos operativos son editables.' },
+  { id:'costospe',      label:'Costos y punto de equilibrio', title:'Costos, punto de equilibrio y GAO', sub:'Estructura de costos variables y fijos de 2025, margen de contribución y apalancamiento operativo.' },
+  { id:'flujocaja',     label:'Flujo de caja',                title:'Flujo de caja 2025', sub:'Flujo de operación, inversión y financiamiento, con conciliación contra el efectivo del balance.' },
+  { id:'costocapital',  label:'Costo de capital (WACC)',      title:'Costo de capital — Kd, CAPM y WACC', sub:'Costo de la deuda, costo del capital propio por CAPM y costo promedio ponderado de capital.' },
+  { id:'diagnostico',   label:'Diagnóstico y alternativas',   title:'Diagnóstico y alternativas de mejora', sub:'Lectura general del estado de la empresa y opciones concretas de mejora, con una alternativa tecnológica y otra de financiamiento de cadena de suministro.' },
+  { id:'simulacion',    label:'Simulación: VPN y TIR',        title:'Evaluación de proyecto — VPN y TIR', sub:'Tome una alternativa del diagnóstico (o una idea propia), introduzca los supuestos y la aplicación calcula el flujo de caja libre, el VPN y la TIR.' },
+];
+
+function buildNav(){
+  const nav = $('navlist');
+  nav.innerHTML = SECTIONS.map((s,i)=>`
+    <li><button data-target="${s.id}" class="${i===0?'active':''}">
+      <span class="num">${String(i+1).padStart(2,'0')}</span>${s.label}
+    </button></li>`).join('');
+  nav.addEventListener('click', (e)=>{
+    const btn = e.target.closest('button[data-target]');
+    if(!btn) return;
+    showSection(btn.dataset.target);
+  });
+}
+function showSection(id){
+  document.querySelectorAll('.section').forEach(s=> s.classList.toggle('active', s.id === 'sec-'+id));
+  document.querySelectorAll('#navlist button').forEach(b=> b.classList.toggle('active', b.dataset.target === id));
+  const meta = SECTIONS.find(s=> s.id === id);
+  if(meta){ setText('pageTitle', meta.title); setText('pageSub', meta.sub); }
+  window.scrollTo({top:0, behavior:'instant' in window ? 'instant':'auto'});
+  const c = document.querySelector('.content'); if(c) c.scrollTop = 0;
+  try{ localStorage.setItem('lv_last_tab', id); }catch(e){}
+}
+
+/* ---------------------------- Tema -------------------------------------- */
+function initTheme(){
+  let saved = null;
+  try{ saved = localStorage.getItem('lv_theme'); }catch(e){}
+  if(saved === 'light' || saved === 'dark'){ document.documentElement.setAttribute('data-theme', saved); }
+  updateThemeLabel();
+  $('themeToggle').addEventListener('click', ()=>{
+    const cur = document.documentElement.getAttribute('data-theme');
+    let next;
+    if(!cur) next = 'dark';
+    else if(cur === 'dark') next = 'light';
+    else next = null;
+    if(next) document.documentElement.setAttribute('data-theme', next);
+    else document.documentElement.removeAttribute('data-theme');
+    try{ if(next) localStorage.setItem('lv_theme', next); else localStorage.removeItem('lv_theme'); }catch(e){}
+    updateThemeLabel();
+  });
+}
+function updateThemeLabel(){
+  const cur = document.documentElement.getAttribute('data-theme');
+  setText('themeLabel', cur === 'dark' ? 'Tema oscuro' : cur === 'light' ? 'Tema claro' : 'Tema del sistema');
+}
+
+/* ---------------------------- Datos por defecto (caso base) ------------- */
+const DEFAULTS = {
+  bs24: { efectivo:610, cxc:1980, inv:2450, gpa:85, ppe:5200, otros:180, cxp:1400, pcdeuda:380, imppag:130, provlab:95, deudalp:2650, impdif:120, capsoc:3200, reslegal:300, utilret:2230 },
+  bs25: { efectivo:700, cxc:2340, inv:2890, gpa:100, ppe:5950, otros:210, cxp:1650, pcdeuda:450, imppag:155, provlab:110, deudalp:3080, impdif:145, capsoc:3200, reslegal:380, utilret:3020 },
+  is24: { ventas:16800, costoventas:-11900, gventa:-1950, gadmin:-1180, depre:460, ingfin:6, gastfin:-340, imprenta:-359 },
+  is25: { ventas:19500, costoventas:-13650, gventa:-2280, gadmin:-1340, depre:520, ingfin:9, gastfin:-395, imprenta:-461 },
+  kpi:  { pedidos:310, pedidosOK:254, undPedidas:48500, undDespachadas:45590 },
+  pe:   { fletes:1200, sueldos:1080 },
+  fc:   { dividendos:1013 },
+  capm: { rf:0.05, beta:1.35, prima:0.062, pais:0.028 },
+  sim:  { inversion:320, vida:8, ahorro:82, rescate:40, impuesto:0.25, wacc:0.1368, autoTax:true, autoWacc:true,
+          caso:'Inversión en sensores de humedad y temperatura para las bodegas de almacenamiento de café.' }
+};
+
+/* ---------------------------- Fila editable / calculada ------------------ */
+// field: {id, label, val, editable, kind:'money'|'pct'|'num', note}
+function rowLine(f, opts){
+  opts = opts || {};
+  const cellClass = opts.wide ? 'label' : 'label';
+  const inputCell = f.editable
+    ? `<input class="cell-input" type="number" step="any" id="${f.id}" value="${f.val}">`
+    : `<span class="cell-computed" id="${f.id}">${f.display||''}</span>`;
+  return `<tr class="${opts.rowClass||''}">
+    <td class="${cellClass}">${f.label}${f.note?`<div class="formula-note">${f.note}</div>`:''}</td>
+    <td class="num">${inputCell}</td>
+  </tr>`;
+}
+
+function twoColRow(labelHtml, leftHtml, rightHtml, rowClass){
+  return `<tr class="${rowClass||''}">
+    <td class="label">${labelHtml}</td>
+    <td class="num">${leftHtml}</td>
+    <td class="num">${rightHtml}</td>
+  </tr>`;
+}
+function inputCell(id, val){ return `<input class="cell-input" type="number" step="any" id="${id}" value="${val}">`; }
+function computedCell(id){ return `<span class="cell-computed" id="${id}"></span>`; }
+
+/* ============================ SECCIÓN 1: ESTADOS FINANCIEROS ============ */
+function buildEstados(){
+  const d24 = DEFAULTS.bs24, d25 = DEFAULTS.bs25, i24 = DEFAULTS.is24, i25 = DEFAULTS.is25;
+  return `
+  <div class="section-head">
+    <div class="toolbar">
+      <button class="btn secondary small" onclick="resetGroup('estados')">Restablecer caso base</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Balance general <span class="tag">Miles de GTQ</span></h3>
+    <table class="rows">
+      <thead><tr><th></th><th>2024</th><th>2025</th></tr></thead>
+      <tbody>
+        <tr class="groupline"><td colspan="3">Activo corriente</td></tr>
+        ${twoColRow('Efectivo y equivalentes', inputCell('bs24_efectivo', d24.efectivo), inputCell('bs25_efectivo', d25.efectivo))}
+        ${twoColRow('Cuentas por cobrar', inputCell('bs24_cxc', d24.cxc), inputCell('bs25_cxc', d25.cxc))}
+        ${twoColRow('Inventarios', inputCell('bs24_inv', d24.inv), inputCell('bs25_inv', d25.inv))}
+        ${twoColRow('Gastos pagados por anticipado', inputCell('bs24_gpa', d24.gpa), inputCell('bs25_gpa', d25.gpa))}
+        ${twoColRow('<b>Total activo corriente</b>', computedCell('bs24_totalAC'), computedCell('bs25_totalAC'), 'subtotal')}
+
+        <tr class="groupline"><td colspan="3">Activo no corriente</td></tr>
+        ${twoColRow('Propiedad, planta y equipo, neto', inputCell('bs24_ppe', d24.ppe), inputCell('bs25_ppe', d25.ppe))}
+        ${twoColRow('Otros activos no corrientes', inputCell('bs24_otros', d24.otros), inputCell('bs25_otros', d25.otros))}
+        ${twoColRow('<b>Total activo no corriente</b>', computedCell('bs24_totalANC'), computedCell('bs25_totalANC'), 'subtotal')}
+        ${twoColRow('<b>TOTAL ACTIVO</b>', computedCell('bs24_totalActivo'), computedCell('bs25_totalActivo'), 'total')}
+
+        <tr class="groupline"><td colspan="3">Pasivo corriente</td></tr>
+        ${twoColRow('Cuentas por pagar comerciales', inputCell('bs24_cxp', d24.cxp), inputCell('bs25_cxp', d25.cxp))}
+        ${twoColRow('Porción corriente de deuda LP', inputCell('bs24_pcdeuda', d24.pcdeuda), inputCell('bs25_pcdeuda', d25.pcdeuda))}
+        ${twoColRow('Impuestos por pagar', inputCell('bs24_imppag', d24.imppag), inputCell('bs25_imppag', d25.imppag))}
+        ${twoColRow('Provisiones laborales', inputCell('bs24_provlab', d24.provlab), inputCell('bs25_provlab', d25.provlab))}
+        ${twoColRow('<b>Total pasivo corriente</b>', computedCell('bs24_totalPC'), computedCell('bs25_totalPC'), 'subtotal')}
+
+        <tr class="groupline"><td colspan="3">Pasivo no corriente</td></tr>
+        ${twoColRow('Deuda a largo plazo', inputCell('bs24_deudalp', d24.deudalp), inputCell('bs25_deudalp', d25.deudalp))}
+        ${twoColRow('Impuesto sobre la renta diferido', inputCell('bs24_impdif', d24.impdif), inputCell('bs25_impdif', d25.impdif))}
+        ${twoColRow('<b>Total pasivo no corriente</b>', computedCell('bs24_totalPNC'), computedCell('bs25_totalPNC'), 'subtotal')}
+        ${twoColRow('<b>TOTAL PASIVO</b>', computedCell('bs24_totalPasivo'), computedCell('bs25_totalPasivo'), 'total')}
+
+        <tr class="groupline"><td colspan="3">Patrimonio</td></tr>
+        ${twoColRow('Capital social', inputCell('bs24_capsoc', d24.capsoc), inputCell('bs25_capsoc', d25.capsoc))}
+        ${twoColRow('Reservas legales', inputCell('bs24_reslegal', d24.reslegal), inputCell('bs25_reslegal', d25.reslegal))}
+        ${twoColRow('Utilidades retenidas', inputCell('bs24_utilret', d24.utilret), inputCell('bs25_utilret', d25.utilret))}
+        ${twoColRow('<b>TOTAL PATRIMONIO</b>', computedCell('bs24_totalPatrimonio'), computedCell('bs25_totalPatrimonio'), 'total')}
+
+        <tr class="groupline"><td colspan="3">Verificación</td></tr>
+        ${twoColRow('Pasivo + Patrimonio', computedCell('bs24_check'), computedCell('bs25_check'))}
+        ${twoColRow('¿Balancea contra el total de activo?', '<span id="bs24_checkflag"></span>', '<span id="bs25_checkflag"></span>')}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>Estado de resultados <span class="tag">Miles de GTQ</span></h3>
+    <table class="rows">
+      <thead><tr><th></th><th>2024</th><th>2025</th></tr></thead>
+      <tbody>
+        ${twoColRow('Ventas netas', inputCell('is24_ventas', i24.ventas), inputCell('is25_ventas', i25.ventas))}
+        ${twoColRow('Costo de ventas', inputCell('is24_costoventas', i24.costoventas), inputCell('is25_costoventas', i25.costoventas))}
+        ${twoColRow('<b>Utilidad bruta</b>', computedCell('is24_utilbruta'), computedCell('is25_utilbruta'), 'subtotal')}
+        ${twoColRow('Gastos de venta y distribución', inputCell('is24_gventa', i24.gventa), inputCell('is25_gventa', i25.gventa))}
+        ${twoColRow('Gastos de administración', inputCell('is24_gadmin', i24.gadmin), inputCell('is25_gadmin', i25.gadmin))}
+        ${twoColRow('<b>Utilidad operativa (EBIT)</b>', computedCell('is24_ebit'), computedCell('is25_ebit'), 'subtotal')}
+        ${twoColRow('(+) Depreciación y amortización', inputCell('is24_depre', i24.depre), inputCell('is25_depre', i25.depre))}
+        ${twoColRow('<b>EBITDA</b> <span class="formula-note">cifra de memo, la cascada sigue desde EBIT</span>', computedCell('is24_ebitda'), computedCell('is25_ebitda'), 'subtotal')}
+        ${twoColRow('Ingresos financieros', inputCell('is24_ingfin', i24.ingfin), inputCell('is25_ingfin', i25.ingfin))}
+        ${twoColRow('Gastos financieros', inputCell('is24_gastfin', i24.gastfin), inputCell('is25_gastfin', i25.gastfin))}
+        ${twoColRow('<b>Utilidad antes de impuestos (UAI)</b>', computedCell('is24_uai'), computedCell('is25_uai'), 'subtotal')}
+        ${twoColRow('Impuesto sobre la renta', inputCell('is24_imprenta', i24.imprenta), inputCell('is25_imprenta', i25.imprenta))}
+        ${twoColRow('<b>UTILIDAD NETA</b>', computedCell('is24_utilneta'), computedCell('is25_utilneta'), 'total')}
+      </tbody>
+    </table>
+  </div>`;
+}
+
+/* ============================ SECCIÓN 2.1: RAZONES ======================= */
+function buildRazones(){
+  function r(label, formula, id24, id25){
+    return `<tr>
+      <td class="label">${label}<div class="formula-note">${formula}</div></td>
+      <td class="num">${computedCell(id24)}</td>
+      <td class="num">${computedCell(id25)}</td>
+    </tr>`;
+  }
+  return `
+  <div class="card"><h3>Liquidez</h3><table class="rows">
+    <thead><tr><th></th><th>2024</th><th>2025</th></tr></thead><tbody>
+    ${r('Razón corriente','AC / PC','rz_corriente24','rz_corriente25')}
+    ${r('Prueba ácida','(AC − Inventarios) / PC','rz_acida24','rz_acida25')}
+    ${r('Razón de efectivo','Efectivo / PC','rz_efectivo24','rz_efectivo25')}
+    ${r('Capital de trabajo neto','AC − PC','rz_ktn24','rz_ktn25')}
+  </tbody></table></div>
+
+  <div class="card"><h3>Endeudamiento</h3><table class="rows">
+    <thead><tr><th></th><th>2024</th><th>2025</th></tr></thead><tbody>
+    ${r('Deuda / Activo','Total pasivo / Total activo','rz_da24','rz_da25')}
+    ${r('Deuda / Patrimonio','Total pasivo / Patrimonio','rz_dp24','rz_dp25')}
+    ${r('Cobertura de intereses','EBIT / |Gastos financieros|','rz_cob24','rz_cob25')}
+    ${r('Deuda / EBITDA','Total pasivo / EBITDA','rz_debitda24','rz_debitda25')}
+  </tbody></table></div>
+
+  <div class="card"><h3>Márgenes</h3><table class="rows">
+    <thead><tr><th></th><th>2024</th><th>2025</th></tr></thead><tbody>
+    ${r('Margen bruto','Utilidad bruta / Ventas','rz_mb24','rz_mb25')}
+    ${r('Margen operativo','EBIT / Ventas','rz_mo24','rz_mo25')}
+    ${r('Margen EBITDA','EBITDA / Ventas','rz_mebitda24','rz_mebitda25')}
+    ${r('Margen neto','Utilidad neta / Ventas','rz_mn24','rz_mn25')}
+  </tbody></table></div>
+
+  <div class="card"><h3>Rentabilidad</h3><table class="rows">
+    <thead><tr><th></th><th>2024</th><th>2025</th></tr></thead><tbody>
+    ${r('ROA','Utilidad neta / Total activo','rz_roa24','rz_roa25')}
+    ${r('ROE','Utilidad neta / Patrimonio','rz_roe24','rz_roe25')}
+  </tbody></table></div>`;
+}
+
+/* ============================ SECCIÓN 2.2: DUPONT ========================= */
+function buildDupont(){
+  function r(label, formula, id24, id25){
+    return `<tr>
+      <td class="label">${label}<div class="formula-note">${formula}</div></td>
+      <td class="num">${computedCell(id24)}</td>
+      <td class="num">${computedCell(id25)}</td>
+    </tr>`;
+  }
+  return `
+  <div class="card"><h3>Clásico (3 factores)</h3><table class="rows">
+    <thead><tr><th></th><th>2024</th><th>2025</th></tr></thead><tbody>
+    ${r('Margen neto','Utilidad neta / Ventas','dp_mn24','dp_mn25')}
+    ${r('Rotación de activos','Ventas / Total activo','dp_rot24','dp_rot25')}
+    ${r('Multiplicador de apalancamiento','Total activo / Patrimonio','dp_mult24','dp_mult25')}
+    ${r('<b>ROE (DuPont clásico)</b>','Margen × Rotación × Multiplicador','dp_roe24','dp_roe25')}
+  </tbody></table></div>
+
+  <div class="card"><h3>Extendido (5 factores)</h3><table class="rows">
+    <thead><tr><th></th><th>2024</th><th>2025</th></tr></thead><tbody>
+    ${r('Carga tributaria','Utilidad neta / UAI','dp_ct24','dp_ct25')}
+    ${r('Carga financiera','UAI / EBIT','dp_cf24','dp_cf25')}
+    ${r('Margen operativo','EBIT / Ventas','dp_mop24','dp_mop25')}
+    ${r('Rotación de activos','Ventas / Total activo','dp_rot2_24','dp_rot2_25')}
+    ${r('Multiplicador de apalancamiento','Total activo / Patrimonio','dp_mult2_24','dp_mult2_25')}
+    ${r('<b>ROE (DuPont extendido)</b>','Carga trib. × Carga fin. × Mg. oper. × Rot. × Mult.','dp_roeext24','dp_roeext25')}
+  </tbody></table>
+  <p class="hint">El ROE extendido debe coincidir con el ROE clásico: ambos parten de la misma utilidad neta y el mismo patrimonio, solo cambia el nivel de detalle de la descomposición.</p>
+  </div>`;
+}
+
+/* ============================ SECCIÓN 2.3: KPIs =========================== */
+function buildKpis(){
+  const k = DEFAULTS.kpi;
+  return `
+  <div class="card">
+    <h3>Inventario, cobranza y pago <span class="tag">2025</span></h3>
+    <table class="rows"><tbody>
+      <tr><td class="label">Inventario promedio<div class="formula-note">(Inv. 2024 + Inv. 2025) / 2</div></td><td class="num">${computedCell('kpi_invprom')}</td></tr>
+      <tr><td class="label">Rotación de inventario<div class="formula-note">Costo de ventas / Inventario promedio</div></td><td class="num">${computedCell('kpi_rotinv')}</td></tr>
+      <tr><td class="label">DIO — días de inventario<div class="formula-note">365 / Rotación de inventario</div></td><td class="num">${computedCell('kpi_dio')}</td></tr>
+      <tr><td class="label">CxC promedio<div class="formula-note">(CxC 2024 + CxC 2025) / 2</div></td><td class="num">${computedCell('kpi_cxcprom')}</td></tr>
+      <tr><td class="label">DSO — días de cobro<div class="formula-note">(CxC promedio / Ventas) × 365</div></td><td class="num">${computedCell('kpi_dso')}</td></tr>
+      <tr><td class="label">CxP promedio<div class="formula-note">(CxP 2024 + CxP 2025) / 2</div></td><td class="num">${computedCell('kpi_cxpprom')}</td></tr>
+      <tr><td class="label">DPO — días de pago<div class="formula-note">(CxP promedio / |Costo de ventas|) × 365</div></td><td class="num">${computedCell('kpi_dpo')}</td></tr>
+      <tr class="total"><td class="label"><b>CCC — ciclo de conversión de efectivo</b><div class="formula-note">DIO + DSO − DPO</div></td><td class="num">${computedCell('kpi_ccc')}</td></tr>
+    </tbody></table>
+  </div>
+
+  <div class="card">
+    <h3>Servicio al cliente <span class="tag">Datos operativos — editables</span></h3>
+    <table class="rows"><tbody>
+      <tr><td class="label">Total de pedidos</td><td class="num">${inputCell('kpi_pedidos', k.pedidos)}</td></tr>
+      <tr><td class="label">Pedidos a tiempo y completos</td><td class="num">${inputCell('kpi_pedidosOK', k.pedidosOK)}</td></tr>
+      <tr class="subtotal"><td class="label"><b>OTIF</b><div class="formula-note">Pedidos a tiempo y completos / Total</div></td><td class="num">${computedCell('kpi_otif')}</td></tr>
+      <tr><td class="label">Unidades pedidas</td><td class="num">${inputCell('kpi_undPedidas', k.undPedidas)}</td></tr>
+      <tr><td class="label">Unidades despachadas</td><td class="num">${inputCell('kpi_undDespachadas', k.undDespachadas)}</td></tr>
+      <tr class="subtotal"><td class="label"><b>Fill rate</b><div class="formula-note">Unidades despachadas / Unidades pedidas</div></td><td class="num">${computedCell('kpi_fillrate')}</td></tr>
+    </tbody></table>
+  </div>
+
+  <div class="grid3">
+    <div class="kpi"><div class="lbl">CCC</div><div class="val" id="kpi_card_ccc">—</div><div class="sub">días de caja atados al ciclo</div></div>
+    <div class="kpi"><div class="lbl">OTIF</div><div class="val" id="kpi_card_otif">—</div><div class="sub">pedidos a tiempo y completos</div></div>
+    <div class="kpi"><div class="lbl">Fill rate</div><div class="val" id="kpi_card_fillrate">—</div><div class="sub">unidades servidas vs. pedidas</div></div>
+  </div>`;
+}
+
+/* ============================ SECCIÓN 3.1: COSTOS-PE ====================== */
+function buildCostosPE(){
+  const p = DEFAULTS.pe;
+  return `
+  <div class="card">
+    <h3>Costos variables <span class="tag">2025 — miles GTQ</span></h3>
+    <table class="rows"><tbody>
+      <tr><td class="label">Costo de mercadería<div class="formula-note">= |Costo de ventas| (estado de resultados 2025)</div></td><td class="num">${computedCell('pe_costomerc')}</td></tr>
+      <tr><td class="label">Fletes y comisiones variables de venta</td><td class="num">${inputCell('pe_fletes', p.fletes)}</td></tr>
+      <tr class="total"><td class="label"><b>Total costos variables</b></td><td class="num">${computedCell('pe_totalvar')}</td></tr>
+    </tbody></table>
+  </div>
+  <div class="card">
+    <h3>Costos fijos <span class="tag">2025 — miles GTQ</span></h3>
+    <table class="rows"><tbody>
+      <tr><td class="label">Sueldos fijos y renta venta/distribución</td><td class="num">${inputCell('pe_sueldos', p.sueldos)}</td></tr>
+      <tr><td class="label">Gastos de administración<div class="formula-note">= |Gastos de administración| (estado de resultados 2025)</div></td><td class="num">${computedCell('pe_gadmin')}</td></tr>
+      <tr class="total"><td class="label"><b>Total costos fijos</b></td><td class="num">${computedCell('pe_totalfijo')}</td></tr>
+    </tbody></table>
+  </div>
+  <div class="card">
+    <h3>Indicadores</h3>
+    <table class="rows"><tbody>
+      <tr><td class="label">Margen de contribución (Q)</td><td class="num">${computedCell('pe_mcq')}</td></tr>
+      <tr><td class="label">Margen de contribución (%)</td><td class="num">${computedCell('pe_mcpct')}</td></tr>
+      <tr class="subtotal"><td class="label"><b>Punto de equilibrio (ventas)</b></td><td class="num">${computedCell('pe_pe')}</td></tr>
+      <tr><td class="label">Margen de seguridad</td><td class="num">${computedCell('pe_ms')}</td></tr>
+      <tr><td class="label">GAO — grado de apalancamiento operativo</td><td class="num">${computedCell('pe_gao')}</td></tr>
+    </tbody></table>
+  </div>`;
+}
+
+/* ============================ SECCIÓN 3.2: FLUJO DE CAJA =================== */
+function buildFlujoCaja(){
+  const f = DEFAULTS.fc;
+  return `
+  <div class="card">
+    <h3>Actividades de operación <span class="tag">2025 — miles GTQ</span></h3>
+    <table class="rows"><tbody>
+      <tr><td class="label">Utilidad neta</td><td class="num">${computedCell('fc_utilneta')}</td></tr>
+      <tr><td class="label">(+) Depreciación y amortización</td><td class="num">${computedCell('fc_depre')}</td></tr>
+      <tr><td class="label">(–) Aumento en cuentas por cobrar</td><td class="num">${computedCell('fc_cxc')}</td></tr>
+      <tr><td class="label">(–) Aumento en inventarios</td><td class="num">${computedCell('fc_inv')}</td></tr>
+      <tr><td class="label">(+) Aumento en cuentas por pagar</td><td class="num">${computedCell('fc_cxp')}</td></tr>
+      <tr class="total"><td class="label"><b>Flujo neto de operación</b></td><td class="num">${computedCell('fc_totaloper')}</td></tr>
+    </tbody></table>
+  </div>
+  <div class="card">
+    <h3>Actividades de inversión</h3>
+    <table class="rows"><tbody>
+      <tr><td class="label">(–) Compra de propiedad, planta y equipo</td><td class="num">${computedCell('fc_ppe')}</td></tr>
+      <tr class="total"><td class="label"><b>Flujo neto de inversión</b></td><td class="num">${computedCell('fc_totalinv')}</td></tr>
+    </tbody></table>
+  </div>
+  <div class="card">
+    <h3>Actividades de financiamiento</h3>
+    <table class="rows"><tbody>
+      <tr><td class="label">(+) Deuda contratada, neta</td><td class="num">${computedCell('fc_deuda')}</td></tr>
+      <tr><td class="label">(–) Dividendos pagados <span class="formula-note">(monto absoluto, editable)</span></td><td class="num">${inputCell('fc_dividendos', f.dividendos)}</td></tr>
+      <tr class="total"><td class="label"><b>Flujo neto de financiamiento</b></td><td class="num">${computedCell('fc_totalfin')}</td></tr>
+    </tbody></table>
+  </div>
+  <div class="card">
+    <h3>Conciliación de efectivo</h3>
+    <table class="rows"><tbody>
+      <tr><td class="label">Variación neta de efectivo</td><td class="num">${computedCell('fc_variacion')}</td></tr>
+      <tr><td class="label">(+) Efectivo al inicio del período</td><td class="num">${computedCell('fc_efeini')}</td></tr>
+      <tr class="total"><td class="label"><b>Efectivo al final del período</b></td><td class="num">${computedCell('fc_efefin')}</td></tr>
+      <tr><td class="label">Verificación contra el balance 2025<div class="formula-note">debe coincidir con el efectivo 2025 del balance</div></td><td class="num"><span id="fc_check"></span></td></tr>
+    </tbody></table>
+  </div>`;
+}
+
+/* ============================ SECCIÓN 4: COSTO DE CAPITAL ================== */
+function buildCostoCapital(){
+  const c = DEFAULTS.capm;
+  return `
+  <div class="card">
+    <h3>A. Costo de la deuda (Kd)</h3>
+    <table class="rows"><tbody>
+      <tr><td class="label">Deuda con costo 2024<div class="formula-note">Porción corriente + Deuda LP</div></td><td class="num">${computedCell('cc_deuda24')}</td></tr>
+      <tr><td class="label">Deuda con costo 2025<div class="formula-note">Porción corriente + Deuda LP</div></td><td class="num">${computedCell('cc_deuda25')}</td></tr>
+      <tr><td class="label">Deuda promedio</td><td class="num">${computedCell('cc_deudaprom')}</td></tr>
+      <tr><td class="label">Gastos financieros 2025</td><td class="num">${computedCell('cc_gastfin')}</td></tr>
+      <tr><td class="label">Kd antes de impuestos<div class="formula-note">Gastos financieros / Deuda promedio</div></td><td class="num">${computedCell('cc_kdantes')}</td></tr>
+      <tr><td class="label">Tasa impositiva efectiva (T)<div class="formula-note">|Impuesto| / UAI</div></td><td class="num">${computedCell('cc_tasa')}</td></tr>
+      <tr class="subtotal"><td class="label"><b>Kd después de impuestos</b><div class="formula-note">Kd × (1 − T)</div></td><td class="num">${computedCell('cc_kddespues')}</td></tr>
+    </tbody></table>
+  </div>
+  <div class="card">
+    <h3>B. Costo del capital propio (CAPM) <span class="tag">supuestos editables</span></h3>
+    <table class="rows"><tbody>
+      <tr><td class="label">Rf — tasa libre de riesgo</td><td class="num">${inputCell('cc_rf', c.rf)}</td></tr>
+      <tr><td class="label">β — beta del sector</td><td class="num">${inputCell('cc_beta', c.beta)}</td></tr>
+      <tr><td class="label">(Rm − Rf) — prima de mercado</td><td class="num">${inputCell('cc_prima', c.prima)}</td></tr>
+      <tr><td class="label">Prima de riesgo país</td><td class="num">${inputCell('cc_pais', c.pais)}</td></tr>
+      <tr class="total"><td class="label"><b>Ke — costo del capital propio</b><div class="formula-note">Rf + β × (Rm − Rf) + Prima país</div></td><td class="num">${computedCell('cc_ke')}</td></tr>
+    </tbody></table>
+    <p class="hint">Las tasas se ingresan en decimal (5% = 0.05).</p>
+  </div>
+  <div class="card">
+    <h3>C. Estructura de capital <span class="tag">2025</span></h3>
+    <table class="rows"><tbody>
+      <tr><td class="label">D — deuda con costo</td><td class="num">${computedCell('cc_D')}</td></tr>
+      <tr><td class="label">E — patrimonio</td><td class="num">${computedCell('cc_E')}</td></tr>
+      <tr><td class="label">V — total financiamiento</td><td class="num">${computedCell('cc_V')}</td></tr>
+      <tr><td class="label">D / V — peso de la deuda</td><td class="num">${computedCell('cc_DV')}</td></tr>
+      <tr><td class="label">E / V — peso del patrimonio</td><td class="num">${computedCell('cc_EV')}</td></tr>
+    </tbody></table>
+  </div>
+  <div class="card">
+    <h3>D. WACC</h3>
+    <table class="rows"><tbody>
+      <tr><td class="label">Componente patrimonio<div class="formula-note">(E/V) × Ke</div></td><td class="num">${computedCell('cc_compE')}</td></tr>
+      <tr><td class="label">Componente deuda<div class="formula-note">(D/V) × Kd después de impuestos</div></td><td class="num">${computedCell('cc_compD')}</td></tr>
+      <tr class="total"><td class="label"><b>WACC</b></td><td class="num">${computedCell('cc_wacc')}</td></tr>
+    </tbody></table>
+  </div>`;
+}
+
+/* ============================ SECCIÓN 5: DIAGNÓSTICO ======================= */
+const ALTERNATIVAS = [
+  {
+    id:'sensores',
+    pill:'Tecnología · Unidad VIII',
+    title:'Sensores IoT de humedad y temperatura en bodega',
+    desc:'Monitoreo continuo de las condiciones de almacenamiento del café para reducir mermas, deterioro y reprocesamiento, con alertas tempranas antes de que un lote se dañe.',
+    inversion:320, vida:8, ahorro:82, rescate:40,
+    caso:'Inversión en sensores de humedad y temperatura para las bodegas de almacenamiento de café.'
+  },
+  {
+    id:'factoraje',
+    pill:'Financiamiento de cadena de suministro',
+    title:'Factoraje de cuentas por cobrar de exportación',
+    desc:'Descontar las facturas de compradores internacionales con un banco o factor financiero para adelantar efectivo durante los meses de cosecha, sin esperar los 40 días promedio de cobro.',
+    inversion:60, vida:5, ahorro:28, rescate:0,
+    caso:'Contratación de una línea de factoraje de cuentas por cobrar de exportación para financiar capital de trabajo estacional.'
+  },
+  {
+    id:'confirming',
+    pill:'Financiamiento de cadena de suministro',
+    title:'Programa de pronto pago (dynamic discounting) a proveedores',
+    desc:'Ofrecer a los proveedores de insumos y transporte la opción de cobrar antes a cambio de un descuento, financiado con el excedente de caja, mejorando la relación con la cadena de suministro.',
+    inversion:90, vida:5, ahorro:24, rescate:0,
+    caso:'Implementación de un programa de pronto pago (dynamic discounting) para proveedores clave de la cadena de suministro.'
+  },
+  {
+    id:'edi-puerto',
+    pill:'Tecnología operativa',
+    title:'Sistema de programación electrónica de embarques (EDI/TMS)',
+    desc:'Plataforma de coordinación con la naviera y la terminal portuaria para programar y confirmar ventanas de embarque con antelación, reduciendo los retrasos en puerto que hoy afectan el cumplimiento con compradores.',
+    inversion:150, vida:6, ahorro:38, rescate:15,
+    caso:'Implementación de un sistema electrónico de programación de embarques (EDI/TMS) para reducir retrasos en puerto.'
+  },
+];
+
+function buildDiagnostico(){
+  const cards = ALTERNATIVAS.map(a => `
+    <div class="alt-card">
+      <span class="pill">${a.pill}</span>
+      <h4>${a.title}</h4>
+      <p>${a.desc}</p>
+      <button class="btn small" onclick="useAlternative('${a.id}')">Usar esta alternativa en la simulación →</button>
+    </div>`).join('');
+
+  return `
+  <div class="diagnostico-box">
+    <p><b>Liquidez y ciclo de efectivo.</b> La razón corriente se mantiene alrededor de <span id="diag_corriente"></span>, con una prueba ácida cercana a <span id="diag_acida"></span>, lo que indica que el activo corriente cubre holgadamente el pasivo corriente incluso sin depender del inventario. Sin embargo, el ciclo de conversión de efectivo es de <span id="diag_ccc"></span>: la empresa financia inventario y cuentas por cobrar durante más de dos meses antes de recuperar el efectivo, un patrón coherente con la estacionalidad de la cosecha descrita en el caso.</p>
+    <p><b>Endeudamiento y cobertura.</b> La deuda representa <span id="diag_da"></span> del activo total, con una cobertura de intereses de <span id="diag_cob"></span> veces el gasto financiero, un nivel razonable que deja espacio para financiar capital de trabajo o inversiones puntuales sin comprometer la solvencia.</p>
+    <p><b>Rentabilidad.</b> El margen neto es de <span id="diag_mn"></span> y el ROE de <span id="diag_roe"></span>, apoyado principalmente por la rotación de activos más que por el apalancamiento financiero, según el modelo DuPont.</p>
+    <p><b>Costo de capital.</b> El WACC calculado es de <span id="diag_wacc"></span>. Cualquier alternativa de inversión debería generar un retorno superior a esta tasa para agregar valor a la empresa.</p>
+    <p><b>Lectura general.</b> La empresa es financieramente sólida y rentable, pero su caja está atada a un ciclo operativo largo y a riesgos operativos concretos (estacionalidad de cosecha, retrasos en puerto y control de calidad en bodega). Las alternativas siguientes atacan esos tres puntos: una es tecnológica, dos son de financiamiento de cadena de suministro y una es operativa/tecnológica sobre el proceso de embarque.</p>
+  </div>
+
+  <div class="section-head" style="margin-top:26px;">
+    <h3 class="serif" style="font-size:17px; margin:0 0 4px; color:var(--text);">Alternativas concretas de mejora</h3>
+    <p style="margin:0; color:var(--text-soft); font-size:13.4px;">Elija una para pre-cargar sus supuestos en la pestaña de Simulación, o construya ahí su propia idea con sus propios números.</p>
+  </div>
+  ${cards}`;
+}
+
+function useAlternative(id){
+  const a = ALTERNATIVAS.find(x=> x.id === id);
+  if(!a) return;
+  $('sim_caso').value = a.caso;
+  $('sim_inversion').value = a.inversion;
+  $('sim_vida').value = a.vida;
+  $('sim_ahorro').value = a.ahorro;
+  $('sim_rescate').value = a.rescate;
+  showSection('simulacion');
+  rebuildSimTable();
+  recalcAll();
+  const card = document.querySelector('#sec-simulacion .card');
+  if(card) card.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+/* ============================ SECCIÓN 6: SIMULACIÓN ========================= */
+function buildSimulacion(){
+  const s = DEFAULTS.sim;
+  return `
+  <div class="card">
+    <h3>A. Caso y supuestos del proyecto <span class="tag">Editable</span></h3>
+    <table class="rows"><tbody>
+      <tr><td class="label" style="width:220px;">Alternativa / idea evaluada</td>
+          <td class="num" colspan="1"><textarea class="cell-input" id="sim_caso" rows="2">${s.caso}</textarea></td></tr>
+      <tr><td class="label">Inversión inicial</td><td class="num">${inputCell('sim_inversion', s.inversion)}</td></tr>
+      <tr><td class="label">Vida útil del proyecto (años)<div class="formula-note">entre 1 y 15 años</div></td><td class="num">${inputCell('sim_vida', s.vida)}</td></tr>
+      <tr><td class="label">Ahorro / beneficio anual en efectivo<div class="formula-note">antes de impuestos y depreciación</div></td><td class="num">${inputCell('sim_ahorro', s.ahorro)}</td></tr>
+      <tr><td class="label">Valor de rescate (año final)</td><td class="num">${inputCell('sim_rescate', s.rescate)}</td></tr>
+      <tr><td class="label">Tasa de impuesto
+            <div class="formula-note"><label><input type="checkbox" id="sim_autoTax" checked style="vertical-align:middle;"> usar tasa efectiva calculada en Costo de capital</label></div>
+          </td><td class="num">${inputCell('sim_impuesto', s.impuesto)}</td></tr>
+      <tr><td class="label">Tasa de descuento (r)
+            <div class="formula-note"><label><input type="checkbox" id="sim_autoWacc" checked style="vertical-align:middle;"> usar WACC calculado en Costo de capital</label></div>
+          </td><td class="num">${inputCell('sim_wacc', s.wacc)}</td></tr>
+    </tbody></table>
+    <p class="hint">Las tasas se ingresan en decimal (13.68% = 0.1368). Al marcar las casillas, estos dos supuestos se sincronizan automáticamente con la pestaña «Costo de capital (WACC)».</p>
+  </div>
+
+  <div class="card">
+    <h3>B. Flujo de caja libre anual (incremental)</h3>
+    <table class="rows"><tbody>
+      <tr><td class="label">Ahorro anual en efectivo</td><td class="num">${computedCell('sim_b_ahorro')}</td></tr>
+      <tr><td class="label">(–) Depreciación anual<div class="formula-note">(Inversión − Valor de rescate) / Vida útil</div></td><td class="num">${computedCell('sim_b_depre')}</td></tr>
+      <tr class="subtotal"><td class="label">(=) Utilidad antes de impuestos</td><td class="num">${computedCell('sim_b_uai')}</td></tr>
+      <tr><td class="label">(–) Impuesto sobre la renta</td><td class="num">${computedCell('sim_b_imp')}</td></tr>
+      <tr class="subtotal"><td class="label">(=) Utilidad neta incremental</td><td class="num">${computedCell('sim_b_un')}</td></tr>
+      <tr><td class="label">(+) Depreciación (no es salida de caja)</td><td class="num">${computedCell('sim_b_depre2')}</td></tr>
+      <tr class="total"><td class="label"><b>(=) Flujo de caja libre anual</b></td><td class="num">${computedCell('sim_b_fcl')}</td></tr>
+    </tbody></table>
+  </div>
+
+  <div class="card">
+    <h3>C. Descuento de flujos</h3>
+    <div style="overflow-x:auto;">
+      <table class="rows" id="sim_table" style="min-width:560px;"></table>
+    </div>
+    <div class="barchart" id="sim_barchart" style="margin-top:18px;"></div>
+    <p class="hint">Barras verdes: flujo de caja descontado positivo del proyecto por año. Barra roja: inversión inicial (año 0). El valor de rescate se suma como entrada de caja adicional en el último año del proyecto (además de reducir la base de depreciación durante toda la vida útil), que es el tratamiento estándar en evaluación de proyectos.</p>
+  </div>
+
+  <div class="decision-banner" id="sim_decision">
+    <div>
+      <div class="dtext" id="sim_decision_text">—</div>
+      <div class="dsub" id="sim_decision_sub">Complete los supuestos para ver el resultado.</div>
+    </div>
+    <div class="metrics">
+      <div class="m"><div class="v" id="sim_vpn_val">—</div><div class="l">VPN</div></div>
+      <div class="m"><div class="v" id="sim_tir_val">—</div><div class="l">TIR</div></div>
+      <div class="m"><div class="v" id="sim_tirwacc_val">—</div><div class="l">TIR − WACC</div></div>
+    </div>
+  </div>`;
+}
+
+/* Reconstruye la tabla de años y el gráfico de barras cuando cambia la vida útil */
+function rebuildSimTable(){
+  let n = Math.round(num('sim_vida'));
+  if(!isFinite(n) || n < 1) n = 1;
+  if(n > 15) n = 15;
+  const table = $('sim_table');
+  if(!table) return;
+  let thead = `<thead><tr><th style="text-align:left;">Concepto</th>`;
+  for(let t=0;t<=n;t++) thead += `<th>Año ${t}</th>`;
+  thead += `</tr></thead>`;
+
+  let rowCF = `<tr><td class="label">Flujo de caja del proyecto</td>`;
+  let rowDF = `<tr><td class="label">Factor de descuento</td>`;
+  let rowPV = `<tr class="total"><td class="label"><b>Valor presente</b></td>`;
+  for(let t=0;t<=n;t++){
+    rowCF += `<td class="num">${computedCell('sim_cf_'+t)}</td>`;
+    rowDF += `<td class="num">${computedCell('sim_df_'+t)}</td>`;
+    rowPV += `<td class="num">${computedCell('sim_pv_'+t)}</td>`;
+  }
+  rowCF += `</tr>`; rowDF += `</tr>`; rowPV += `</tr>`;
+
+  table.innerHTML = thead + `<tbody>${rowCF}${rowDF}${rowPV}</tbody>`;
+
+  const bc = $('sim_barchart');
+  if(bc){
+    let bars = '';
+    for(let t=0;t<=n;t++){
+      bars += `<div class="bar-wrap"><div class="bar" id="sim_bar_${t}" style="height:4px;"></div><div class="bar-label">${t}</div></div>`;
+    }
+    bc.innerHTML = bars;
+  }
+}
+
+/* ============================ MOTOR DE CÁLCULO ============================= */
+function calcBS(y){
+  const p = 'bs'+y+'_';
+  const efectivo=num(p+'efectivo'), cxc=num(p+'cxc'), inv=num(p+'inv'), gpa=num(p+'gpa');
+  const totalAC = efectivo+cxc+inv+gpa;
+  const ppe=num(p+'ppe'), otros=num(p+'otros');
+  const totalANC = ppe+otros;
+  const totalActivo = totalAC+totalANC;
+  const cxp=num(p+'cxp'), pcdeuda=num(p+'pcdeuda'), imppag=num(p+'imppag'), provlab=num(p+'provlab');
+  const totalPC = cxp+pcdeuda+imppag+provlab;
+  const deudalp=num(p+'deudalp'), impdif=num(p+'impdif');
+  const totalPNC = deudalp+impdif;
+  const totalPasivo = totalPC+totalPNC;
+  const capsoc=num(p+'capsoc'), reslegal=num(p+'reslegal'), utilret=num(p+'utilret');
+  const totalPatrimonio = capsoc+reslegal+utilret;
+  const check = totalPasivo+totalPatrimonio;
+  return {efectivo,cxc,inv,gpa,totalAC,ppe,otros,totalANC,totalActivo,cxp,pcdeuda,imppag,provlab,totalPC,deudalp,impdif,totalPNC,totalPasivo,capsoc,reslegal,utilret,totalPatrimonio,check};
+}
+function calcIS(y){
+  const p='is'+y+'_';
+  const ventas=num(p+'ventas'), costoventas=num(p+'costoventas');
+  const utilbruta=ventas+costoventas;
+  const gventa=num(p+'gventa'), gadmin=num(p+'gadmin');
+  const ebit=utilbruta+gventa+gadmin;
+  const depre=num(p+'depre');
+  const ebitda=ebit+depre;
+  const ingfin=num(p+'ingfin'), gastfin=num(p+'gastfin');
+  const uai=ebit+ingfin+gastfin;
+  const imprenta=num(p+'imprenta');
+  const utilneta=uai+imprenta;
+  return {ventas,costoventas,utilbruta,gventa,gadmin,ebit,depre,ebitda,ingfin,gastfin,uai,imprenta,utilneta};
+}
+function setBSCheckFlag(y,bs){
+  const ok = Math.abs(bs.check-bs.totalActivo) < 0.5;
+  const el = $('bs'+y+'_checkflag');
+  if(el){ el.textContent = ok? '✓ balancea' : '⚠ no balancea'; el.className = ok?'check-ok':'check-bad'; }
+}
+function ratios(bs,is){
+  return {
+    corriente: bs.totalAC/bs.totalPC,
+    acida: (bs.totalAC-bs.inv)/bs.totalPC,
+    efectivo: bs.efectivo/bs.totalPC,
+    ktn: bs.totalAC-bs.totalPC,
+    da: bs.totalPasivo/bs.totalActivo,
+    dp: bs.totalPasivo/bs.totalPatrimonio,
+    cob: is.ebit/(-is.gastfin),
+    debitda: bs.totalPasivo/is.ebitda,
+    mb: is.utilbruta/is.ventas,
+    mo: is.ebit/is.ventas,
+    mebitda: is.ebitda/is.ventas,
+    mn: is.utilneta/is.ventas,
+    roa: is.utilneta/bs.totalActivo,
+    roe: is.utilneta/bs.totalPatrimonio,
+  };
+}
+function dupont(bs,is){
+  const mn = is.utilneta/is.ventas;
+  const rot = is.ventas/bs.totalActivo;
+  const mult = bs.totalActivo/bs.totalPatrimonio;
+  const roeC = mn*rot*mult;
+  const ct = is.utilneta/is.uai;
+  const cf = is.uai/is.ebit;
+  const mop = is.ebit/is.ventas;
+  const roeE = ct*cf*mop*rot*mult;
+  return {mn,rot,mult,roeC,ct,cf,mop,roeE};
+}
+
+function recalcAll(){
+  const bs24 = calcBS('24'), bs25 = calcBS('25');
+  const is24 = calcIS('24'), is25 = calcIS('25');
+
+  ['totalAC','totalANC','totalActivo','totalPC','totalPNC','totalPasivo','totalPatrimonio','check'].forEach(k=>{
+    setText('bs24_'+k, fmtQ(bs24[k])); setText('bs25_'+k, fmtQ(bs25[k]));
+  });
+  setBSCheckFlag('24', bs24); setBSCheckFlag('25', bs25);
+
+  setText('is24_utilbruta', fmtQ(is24.utilbruta)); setText('is25_utilbruta', fmtQ(is25.utilbruta));
+  setText('is24_ebit', fmtQ(is24.ebit)); setText('is25_ebit', fmtQ(is25.ebit));
+  setText('is24_ebitda', fmtQ(is24.ebitda)); setText('is25_ebitda', fmtQ(is25.ebitda));
+  setText('is24_uai', fmtQ(is24.uai)); setText('is25_uai', fmtQ(is25.uai));
+  setText('is24_utilneta', fmtQ(is24.utilneta)); setText('is25_utilneta', fmtQ(is25.utilneta));
+
+  const rz24 = ratios(bs24,is24), rz25 = ratios(bs25,is25);
+  setText('rz_corriente24', fmtX(rz24.corriente)); setText('rz_corriente25', fmtX(rz25.corriente));
+  setText('rz_acida24', fmtX(rz24.acida)); setText('rz_acida25', fmtX(rz25.acida));
+  setText('rz_efectivo24', fmtX(rz24.efectivo)); setText('rz_efectivo25', fmtX(rz25.efectivo));
+  setText('rz_ktn24', fmtQ(rz24.ktn)); setText('rz_ktn25', fmtQ(rz25.ktn));
+  setText('rz_da24', fmtPct(rz24.da)); setText('rz_da25', fmtPct(rz25.da));
+  setText('rz_dp24', fmtX(rz24.dp)); setText('rz_dp25', fmtX(rz25.dp));
+  setText('rz_cob24', fmtX(rz24.cob)); setText('rz_cob25', fmtX(rz25.cob));
+  setText('rz_debitda24', fmtX(rz24.debitda)); setText('rz_debitda25', fmtX(rz25.debitda));
+  setText('rz_mb24', fmtPct(rz24.mb)); setText('rz_mb25', fmtPct(rz25.mb));
+  setText('rz_mo24', fmtPct(rz24.mo)); setText('rz_mo25', fmtPct(rz25.mo));
+  setText('rz_mebitda24', fmtPct(rz24.mebitda)); setText('rz_mebitda25', fmtPct(rz25.mebitda));
+  setText('rz_mn24', fmtPct(rz24.mn)); setText('rz_mn25', fmtPct(rz25.mn));
+  setText('rz_roa24', fmtPct(rz24.roa)); setText('rz_roa25', fmtPct(rz25.roa));
+  setText('rz_roe24', fmtPct(rz24.roe)); setText('rz_roe25', fmtPct(rz25.roe));
+
+  const dp24 = dupont(bs24,is24), dp25 = dupont(bs25,is25);
+  setText('dp_mn24', fmtPct(dp24.mn)); setText('dp_mn25', fmtPct(dp25.mn));
+  setText('dp_rot24', fmtX(dp24.rot)); setText('dp_rot25', fmtX(dp25.rot));
+  setText('dp_mult24', fmtX(dp24.mult)); setText('dp_mult25', fmtX(dp25.mult));
+  setText('dp_roe24', fmtPct(dp24.roeC)); setText('dp_roe25', fmtPct(dp25.roeC));
+  setText('dp_ct24', fmtPct(dp24.ct)); setText('dp_ct25', fmtPct(dp25.ct));
+  setText('dp_cf24', fmtPct(dp24.cf)); setText('dp_cf25', fmtPct(dp25.cf));
+  setText('dp_mop24', fmtPct(dp24.mop)); setText('dp_mop25', fmtPct(dp25.mop));
+  setText('dp_rot2_24', fmtX(dp24.rot)); setText('dp_rot2_25', fmtX(dp25.rot));
+  setText('dp_mult2_24', fmtX(dp24.mult)); setText('dp_mult2_25', fmtX(dp25.mult));
+  setText('dp_roeext24', fmtPct(dp24.roeE)); setText('dp_roeext25', fmtPct(dp25.roeE));
+
+  const invprom = (bs24.inv+bs25.inv)/2;
+  const rotinv = (-is25.costoventas)/invprom;
+  const dio = 365/rotinv;
+  const cxcprom = (bs24.cxc+bs25.cxc)/2;
+  const dso = (cxcprom/is25.ventas)*365;
+  const cxpprom = (bs24.cxp+bs25.cxp)/2;
+  const dpo = (cxpprom/(-is25.costoventas))*365;
+  const ccc = dio+dso-dpo;
+  setText('kpi_invprom', fmtQ(invprom));
+  setText('kpi_rotinv', fmtX(rotinv));
+  setText('kpi_dio', fmtDays(dio));
+  setText('kpi_cxcprom', fmtQ(cxcprom));
+  setText('kpi_dso', fmtDays(dso));
+  setText('kpi_cxpprom', fmtQ(cxpprom));
+  setText('kpi_dpo', fmtDays(dpo));
+  setText('kpi_ccc', fmtDays(ccc));
+
+  const pedidos = num('kpi_pedidos'), pedidosOK = num('kpi_pedidosOK');
+  const otif = pedidosOK/pedidos;
+  const undPedidas = num('kpi_undPedidas'), undDespachadas = num('kpi_undDespachadas');
+  const fillrate = undDespachadas/undPedidas;
+  setText('kpi_otif', fmtPct(otif));
+  setText('kpi_fillrate', fmtPct(fillrate));
+  setText('kpi_card_ccc', fmtDays(ccc));
+  setText('kpi_card_otif', fmtPct(otif,1));
+  setText('kpi_card_fillrate', fmtPct(fillrate,1));
+
+  const costomerc = -is25.costoventas;
+  const fletes = num('pe_fletes');
+  const totalvar = costomerc+fletes;
+  const sueldos = num('pe_sueldos');
+  const gadminabs = -is25.gadmin;
+  const totalfijo = sueldos+gadminabs;
+  const mcq = is25.ventas-totalvar;
+  const mcpct = mcq/is25.ventas;
+  const pe = totalfijo/mcpct;
+  const ms = (is25.ventas-pe)/is25.ventas;
+  const gao = mcq/is25.ebit;
+  setText('pe_costomerc', fmtQ(costomerc));
+  setText('pe_totalvar', fmtQ(totalvar));
+  setText('pe_gadmin', fmtQ(gadminabs));
+  setText('pe_totalfijo', fmtQ(totalfijo));
+  setText('pe_mcq', fmtQ(mcq));
+  setText('pe_mcpct', fmtPct(mcpct));
+  setText('pe_pe', fmtQ(pe));
+  setText('pe_ms', fmtPct(ms));
+  setText('pe_gao', fmtX(gao));
+
+  const fc_cxc = -(bs25.cxc-bs24.cxc);
+  const fc_inv = -(bs25.inv-bs24.inv);
+  const fc_cxp = bs25.cxp-bs24.cxp;
+  const fc_totaloper = is25.utilneta+is25.depre+fc_cxc+fc_inv+fc_cxp;
+  const fc_ppe = -(bs25.ppe-bs24.ppe);
+  const fc_totalinv = fc_ppe;
+  const fc_deuda = (bs25.pcdeuda+bs25.deudalp)-(bs24.pcdeuda+bs24.deudalp);
+  const dividendos = num('fc_dividendos');
+  const fc_totalfin = fc_deuda-dividendos;
+  const fc_variacion = fc_totaloper+fc_totalinv+fc_totalfin;
+  const fc_efeini = bs24.efectivo;
+  const fc_efefin = fc_variacion+fc_efeini;
+  setText('fc_utilneta', fmtQ(is25.utilneta));
+  setText('fc_depre', fmtQ(is25.depre));
+  setText('fc_cxc', fmtQ(fc_cxc));
+  setText('fc_inv', fmtQ(fc_inv));
+  setText('fc_cxp', fmtQ(fc_cxp));
+  setText('fc_totaloper', fmtQ(fc_totaloper));
+  setText('fc_ppe', fmtQ(fc_ppe));
+  setText('fc_totalinv', fmtQ(fc_totalinv));
+  setText('fc_deuda', fmtQ(fc_deuda));
+  setText('fc_totalfin', fmtQ(fc_totalfin));
+  setText('fc_variacion', fmtQ(fc_variacion));
+  setText('fc_efeini', fmtQ(fc_efeini));
+  setText('fc_efefin', fmtQ(fc_efefin));
+  const fcOk = Math.abs(fc_efefin-bs25.efectivo) < 0.5;
+  const fcEl = $('fc_check');
+  if(fcEl){ fcEl.textContent = fcOk? ('✓ coincide ('+fmtQ(bs25.efectivo)+')') : ('⚠ no coincide — efectivo del balance: '+fmtQ(bs25.efectivo)); fcEl.className = fcOk?'check-ok':'check-bad'; }
+
+  const deuda24 = bs24.pcdeuda+bs24.deudalp;
+  const deuda25 = bs25.pcdeuda+bs25.deudalp;
+  const deudaprom = (deuda24+deuda25)/2;
+  const gastfin25 = -is25.gastfin;
+  const kdantes = gastfin25/deudaprom;
+  const tasaEfectiva = (-is25.imprenta)/is25.uai;
+  const kddespues = kdantes*(1-tasaEfectiva);
+  setText('cc_deuda24', fmtQ(deuda24));
+  setText('cc_deuda25', fmtQ(deuda25));
+  setText('cc_deudaprom', fmtQ(deudaprom));
+  setText('cc_gastfin', fmtQ(gastfin25));
+  setText('cc_kdantes', fmtPct(kdantes));
+  setText('cc_tasa', fmtPct(tasaEfectiva));
+  setText('cc_kddespues', fmtPct(kddespues));
+
+  const rf = num('cc_rf'), beta = num('cc_beta'), prima = num('cc_prima'), pais = num('cc_pais');
+  const ke = rf+beta*prima+pais;
+  setText('cc_ke', fmtPct(ke));
+
+  const D = deuda25, E = bs25.totalPatrimonio, V = D+E;
+  const DV = D/V, EV = E/V;
+  setText('cc_D', fmtQ(D));
+  setText('cc_E', fmtQ(E));
+  setText('cc_V', fmtQ(V));
+  setText('cc_DV', fmtPct(DV));
+  setText('cc_EV', fmtPct(EV));
+
+  const compE = EV*ke, compD = DV*kddespues;
+  const wacc = compE+compD;
+  setText('cc_compE', fmtPct(compE));
+  setText('cc_compD', fmtPct(compD));
+  setText('cc_wacc', fmtPct(wacc));
+
+  setText('diag_corriente', fmtX(rz25.corriente));
+  setText('diag_acida', fmtX(rz25.acida));
+  setText('diag_ccc', fmtDays(ccc));
+  setText('diag_da', fmtPct(rz25.da));
+  setText('diag_cob', fmtX(rz25.cob));
+  setText('diag_mn', fmtPct(rz25.mn));
+  setText('diag_roe', fmtPct(rz25.roe));
+  setText('diag_wacc', fmtPct(wacc));
+
+  const autoTax = $('sim_autoTax'), autoWacc = $('sim_autoWacc');
+  const impInput = $('sim_impuesto'), waccInput = $('sim_wacc');
+  if(autoTax && impInput){
+    if(autoTax.checked){ impInput.value = tasaEfectiva.toFixed(4); impInput.disabled = true; }
+    else { impInput.disabled = false; }
+  }
+  if(autoWacc && waccInput){
+    if(autoWacc.checked){ waccInput.value = wacc.toFixed(4); waccInput.disabled = true; }
+    else { waccInput.disabled = false; }
+  }
+
+  calcSimulacion();
+}
+
+function calcSimulacion(){
+  let n = Math.round(num('sim_vida'));
+  if(!isFinite(n) || n < 1) n = 1;
+  if(n > 15) n = 15;
+  const inversion = num('sim_inversion');
+  const ahorro = num('sim_ahorro');
+  const rescate = num('sim_rescate');
+  const impuesto = num('sim_impuesto');
+  const r = num('sim_wacc');
+
+  const depre = (inversion-rescate)/n;
+  const uai = ahorro-depre;
+  const imp = -uai*impuesto;
+  const un = uai+imp;
+  const fcl = un+depre;
+
+  setText('sim_b_ahorro', fmtQ(ahorro));
+  setText('sim_b_depre', fmtQ(-depre));
+  setText('sim_b_uai', fmtQ(uai));
+  setText('sim_b_imp', fmtQ(imp));
+  setText('sim_b_un', fmtQ(un));
+  setText('sim_b_depre2', fmtQ(depre));
+  setText('sim_b_fcl', fmtQ(fcl));
+
+  const cashflows = [];
+  cashflows[0] = -inversion;
+  for(let t=1;t<n;t++) cashflows[t] = fcl;
+  cashflows[n] = fcl+rescate;
+
+  const maxAbs = Math.max(inversion, Math.abs(fcl+rescate), Math.abs(fcl), 1);
+  for(let t=0;t<=n;t++){
+    setText('sim_cf_'+t, fmtQ(cashflows[t]));
+    const df = 1/Math.pow(1+r, t);
+    setText('sim_df_'+t, isFinite(df)? df.toFixed(4) : '—');
+    const pv = cashflows[t]*df;
+    setText('sim_pv_'+t, fmtQ(pv));
+    const bar = $('sim_bar_'+t);
+    if(bar){
+      const h = Math.max(4, Math.min(150, Math.abs(pv)/maxAbs*150));
+      bar.style.height = h+'px';
+      bar.className = 'bar' + (pv<0? ' negative':'');
+      bar.title = fmtQ(pv);
+    }
+  }
+
+  let vpn = 0;
+  for(let t=0;t<cashflows.length;t++) vpn += cashflows[t]/Math.pow(1+r,t);
+  const tir = irr(cashflows, Math.max(r,0.1));
+
+  setText('sim_vpn_val', fmtQ(vpn));
+  setText('sim_tir_val', isFinite(tir)? fmtPct(tir) : 'no definida');
+  setText('sim_tirwacc_val', isFinite(tir)? fmtPct(tir-r) : '—');
+
+  const banner = $('sim_decision');
+  const dtext = $('sim_decision_text');
+  const dsub = $('sim_decision_sub');
+  if(banner && dtext && dsub){
+    if(vpn > 0.005){
+      banner.className = 'decision-banner accept';
+      dtext.textContent = 'AGREGA VALOR — ACEPTAR';
+      dsub.textContent = 'El VPN es positivo: el proyecto rinde por encima del costo de capital de ' + fmtPct(r) + '.';
+    } else if(Math.abs(vpn) <= 0.005){
+      banner.className = 'decision-banner';
+      dtext.textContent = 'INDIFERENTE';
+      dsub.textContent = 'El VPN es prácticamente cero: el proyecto rinde exactamente el costo de capital.';
+    } else {
+      banner.className = 'decision-banner reject';
+      dtext.textContent = 'DESTRUYE VALOR — RECHAZAR';
+      dsub.textContent = 'El VPN es negativo: el proyecto rinde por debajo del costo de capital de ' + fmtPct(r) + '.';
+    }
+  }
+}
+
+/* ============================ RENDER / INIT ================================= */
+function resetGroup(){
+  if(confirm('¿Restablecer todos los valores al caso base original?')){
+    location.reload();
+  }
+}
+
+function render(){
+  const c = document.getElementById('content');
+  c.innerHTML = SECTIONS.map(s=>{
+    let body = '';
+    switch(s.id){
+      case 'estados': body = buildEstados(); break;
+      case 'razones': body = buildRazones(); break;
+      case 'dupont': body = buildDupont(); break;
+      case 'kpis': body = buildKpis(); break;
+      case 'costospe': body = buildCostosPE(); break;
+      case 'flujocaja': body = buildFlujoCaja(); break;
+      case 'costocapital': body = buildCostoCapital(); break;
+      case 'diagnostico': body = buildDiagnostico(); break;
+      case 'simulacion': body = buildSimulacion(); break;
+    }
+    return `<section class="section" id="sec-${s.id}">${body}</section>`;
+  }).join('');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  buildNav();
+  initTheme();
+  render();
+
+  let last = null;
+  try{ last = localStorage.getItem('lv_last_tab'); }catch(e){}
+  showSection((last && SECTIONS.find(s=>s.id===last)) ? last : SECTIONS[0].id);
+
+  rebuildSimTable();
+
+  const content = document.getElementById('content');
+  content.addEventListener('input', (e)=>{
+    if(e.target.id === 'sim_vida'){ rebuildSimTable(); }
+    recalcAll();
+  });
+  content.addEventListener('change', (e)=>{
+    if(e.target.id === 'sim_autoTax' || e.target.id === 'sim_autoWacc'){ recalcAll(); }
+  });
+
+  recalcAll();
+});
+
+</script>
+</body>
+</html>
